@@ -67,7 +67,7 @@ function SchedulePage() {
                     </p>
                   </div>
                   <span
-                    className={`rounded-full px-3 py-1 text-xs font-semibold capitalize ${STATUS_STYLES[b.status] ?? STATUS_STYLES.pending}`}
+                    className={`rounded-full px-3 py-1 text-xs font-semibold capitalize ${STATUS_STYLES[b.status] ?? STATUS_STYLES["pending"]}`}
                   >
                     {b.status}
                   </span>
