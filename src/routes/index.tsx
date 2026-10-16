@@ -66,10 +66,6 @@ function BookingPage() {
         <CheckCircle2 className="mx-auto h-14 w-14 text-primary" />
         <h1 className="mt-6 font-display text-4xl font-semibold">You're booked!</h1>
         <p className="mt-3 text-muted-foreground">
-          Thank you, {name.split(" ")[0]}. Your {session.name.toLowerCase()} session is confirmed
-          for <span className="font-medium text-foreground">{date}</span> at{" "}
-          <span className="font-medium text-foreground">{slot}</span>. A confirmation is on its way
-          to {email}.
         </p>
         <button
           onClick={() => {
@@ -193,7 +189,15 @@ function BookingPage() {
               client_name: name.trim(),
               client_email: email.trim(),
             });
-            toast.success(" Booking Confirmed: " + name);
+            
+            toast.success(" Thank you, " 
+                          + name 
+                          + ". Your session is confirmed for " 
+                          + date 
+                          + " at " 
+                          + slot 
+                          + ". ");
+                          
           }}
         >
           <div className="grid gap-4 sm:grid-cols-2">
