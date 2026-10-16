@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { CheckCircle2, Clock, User, Users, Package } from "lucide-react";
+import { toast } from "sonner";
 
 import {
   SESSION_TYPES,
@@ -192,6 +193,7 @@ function BookingPage() {
               client_name: name.trim(),
               client_email: email.trim(),
             });
+            toast.success(" Booking Confirmed: " + name);
           }}
         >
           <div className="grid gap-4 sm:grid-cols-2">
