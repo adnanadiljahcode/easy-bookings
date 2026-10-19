@@ -8,11 +8,13 @@ import {
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
-import { Aperture, CalendarDays, Camera } from "lucide-react";
+import { useEffect, useState, type ReactNode } from "react";
+import { Aperture, CalendarDays, Camera, LogOut } from "lucide-react";
+import type { Session } from "@supabase/supabase-js";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { supabase } from "@/integrations/supabase/client";
 
 import { Toaster } from "@/components/ui/sonner"
 
