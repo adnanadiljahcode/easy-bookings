@@ -3,6 +3,7 @@ import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-q
 import { useMemo, useState } from "react";
 import { CheckCircle2, Clock, User, Users, Package } from "lucide-react";
 import { toast } from "sonner";
+import { useRouter } from "@tanstack/react-router";
 
 import {
   SESSION_TYPES,
@@ -42,6 +43,7 @@ function BookingPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
+  const router = useRouter();
 
   const { data: dayBookings } = useSuspenseQuery(bookingsQueryOptions(date));
   const takenSlots = useMemo(
@@ -54,6 +56,23 @@ function BookingPage() {
     onSuccess: () => {
       setDone(true);
       queryClient.invalidateQueries({ queryKey: ["bookings"] });
+
+    // Find session details to show a personalized message
+    const session = SESSION_TYPES.find((s) => s.id === sessionType);
+
+    toast.success("Booking confirmed!", {
+      description: `${session?.name} session on ${date} at ${slot}`,
+      action: {
+        label: "View Schedule",
+        onClick: () => router.navigate({ to: "/schedule" }),
+      },
+    });
+  },
+  onError: (error: Error) => {
+    // Shows slot collision or network error
+    toast.error("Could not complete booking", {
+      description: error.message || "Please choose another time slot.",
+    });
     },
   });
 
