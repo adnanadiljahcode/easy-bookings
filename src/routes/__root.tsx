@@ -121,7 +121,7 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
-function AppChrome() {
+function AppChrome({ session, onSignOut }: { session: Session | null; onSignOut: () => void }) {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header */}
@@ -131,6 +131,29 @@ function AppChrome() {
           <span className="font-display text-xl font-semibold tracking-wide">
             Lumen &amp; Light Studio
           </span>
+          <div className="ml-auto flex items-center gap-3">
+            {session ? (
+              <>
+                <span className="hidden max-w-48 truncate text-sm text-muted-foreground sm:block">
+                  {session.user.email}
+                </span>
+                <button
+                  onClick={onSignOut}
+                  className="inline-flex items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Sign out
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/auth"
+                className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                Sign in
+              </Link>
+            )}
+          </div>
         </div>
       </header>
 
