@@ -208,7 +208,7 @@ function BookingPage() {
               client_name: name.trim(),
               client_email: email.trim(),
             });
-            
+            /*
             toast.success(" Thank you, " 
                           + name 
                           + ". Your session is confirmed for " 
@@ -216,7 +216,7 @@ function BookingPage() {
                           + " at " 
                           + slot 
                           + ". ");
-                          
+            */              
           }}
         >
           <div className="grid gap-4 sm:grid-cols-2">
