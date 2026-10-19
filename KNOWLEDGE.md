@@ -67,7 +67,7 @@ Data access helpers in `src/lib/bookings.ts`:
 - **Stack:** TanStack Start v1 (React 19, Vite 7), Tailwind CSS v4 via `src/styles.css`, TanStack Query for data, shadcn-style components, lucide-react icons.
 - **Backend:** Lovable Cloud (Supabase). Client imported as `import { supabase } from "@/integrations/supabase/client"` — never edit the auto-generated files under `src/integrations/supabase/`.
 - **Routing:** file-based routes in `src/routes/`; never edit `src/routeTree.gen.ts`. Each content route has its own `head()` with unique title/description/og metadata.
-- **Auth:** none — booking is guest checkout; the bookings table is publicly readable/writable via RLS policies.
+- **Auth:** email/password sign-up and sign-in via Lovable Cloud auth (email confirmation on). Auth page at `/auth` (src/routes/auth.tsx); the header in `__root.tsx` is session-aware (Sign in button for guests, email + Sign out when logged in). Booking remains open to guests — no route is gated, no profiles table.
 - **Server middleware:** `src/start.ts` registers `attachSupabaseAuth` function middleware and CSRF protection — preserve these.
 
 ## Verified
